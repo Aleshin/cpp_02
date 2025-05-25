@@ -1,37 +1,30 @@
-#include "Harl.hpp"
+#include "Fixed.hpp"
 
-Harl::Harl() {}
-
-Harl::~Harl() {}
-
-void Harl::debug(void) {
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
+Fixed::Fixed() : _raw(0) {
+	std::cout << "Default constructor called" << std::endl;
 }
 
-void Harl::info(void) {
-	std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
+Fixed::Fixed(const Fixed &other) {
+	std::cout << "Copy constructor called" << std::endl;
+	this->_raw = other.getRawBits();
 }
 
-void Harl::warning(void) {
-	std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years, whereas you started working here just last month." << std::endl;
+Fixed &Fixed::operator=(const Fixed &rhs) {
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &rhs)
+		this->_raw = rhs.getRawBits();
+	return *this;
 }
 
-void Harl::error(void) {
-	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
+Fixed::~Fixed() {
+	std::cout << "Destructor called" << std::endl;
 }
 
-void Harl::complain(std::string level) {
-	LevelMap levels[] = {
-		{ "DEBUG", &Harl::debug },
-		{ "INFO", &Harl::info },
-		{ "WARNING", &Harl::warning },
-		{ "ERROR", &Harl::error }
-	};
+int Fixed::getRawBits(void) const {
+	std::cout << "getRawBits member function called" << std::endl;
+	return this->_raw;
+}
 
-	for (int i = 0; i < 4; ++i) {
-		if (levels[i].level == level) {
-			(this->*levels[i].func)();
-			return;
-		}
-	}
+void Fixed::setRawBits(int const raw) {
+	this->_raw = raw;
 }
