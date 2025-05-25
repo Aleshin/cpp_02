@@ -1,23 +1,21 @@
-#ifndef HARL_HPP
-# define HARL_HPP
-#include <iostream>
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-class Harl {
-public:
-    Harl();
-    ~Harl();
-    void complain(std::string level);
+# include <iostream>
 
+class Fixed {
 private:
-    void debug(void);
-    void info(void);
-    void warning(void);
-    void error(void);
+	int					_raw;
+	static const int	_fractional_bits = 8;
 
-    struct LevelMap {
-        std::string level;
-		void (Harl::*func)(void);
-    };
+public:
+	Fixed();                            // Default constructor
+	Fixed(const Fixed &other);          // Copy constructor
+	Fixed &operator=(const Fixed &rhs); // Copy assignment operator
+	~Fixed();                           // Destructor
+
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
 };
 
 #endif

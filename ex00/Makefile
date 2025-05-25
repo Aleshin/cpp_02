@@ -1,8 +1,8 @@
-NAME = harlFilter
+NAME = fixed
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g -MMD
-SRCS = main.cpp Harl.cpp
+SRCS = main.cpp Fixed.cpp
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(OBJS:.o=.d)
 
